@@ -282,6 +282,6 @@ router.get('/github/:username', function(req,res){
         res.status(500).send('sever error');
         
     }
-})
+});
 
 module.exports = router; 
