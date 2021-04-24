@@ -209,7 +209,7 @@ router.put('/education',[auth , [
     const {school, degree, fieldofstudy, from, to, current, description} = req.body;
     const newEdu = {
         school:school,
-        company: company,
+        degree: degree,
         fieldofstudy:fieldofstudy,
         from: from,
         to:to,
