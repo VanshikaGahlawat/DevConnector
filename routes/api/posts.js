@@ -10,10 +10,10 @@ const User = require("../../models/User");
 //@desc Add posts
 //@access Private
 router.post("/", [auth, [
-    check('text',"text is required, post cannot be empty")
+    check('text',"Text is required, post cannot be empty").not().isEmpty()
 ]], async function(req,res){
     const errors= validationResult(req);
-    if(!errors.isEmpty){
+    if(!errors.isEmpty()){
         res.status(400).json({error:errors.array()});
     }
     
@@ -131,7 +131,7 @@ router.put('/unlike/:id', auth, async function(req,res){
         }
 
         const removeIndex = post.likes.map(like => like.user.toString()).indexOf(req.user.id);
-        post.like.splice(removeIndex, 1);
+        post.likes.splice(removeIndex, 1);
 
         await post.save();
         res.json(post.likes);
